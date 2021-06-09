@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LPGXR71BV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2LPGXR71BV');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Cascaded Diffusion Models for High Fidelity Image Generation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container">
+            <h1 class="text-center">Cascaded Diffusion Models for High Fidelity Image Generation</h1>
+        </div>
+        <div class="container" style="max-width: 650px;">
+            <div class="row">
+                <div class="col-sm">
+                    <h4 class="text-center" style="margin: 0px;">Jonathan Ho*, Chitwan Saharia*, William Chan, <br/> David J. Fleet, Mohammad Norouzi, Tim Salimans</h4>
+                    <h5 class="text-center">Google Research</h5>
+                    <h6 class="text-center">(* denotes equal contribution)</h6>
+                </div>
+            </div>
+        </div>
+        <div class="buttons" style="margin-bottom: 8px;"><a class="btn btn-primary" role="button" href="assets/cascaded_diffusion.pdf">Paper</a></div>
+        <div class="container" style="max-width: 650px;">
+            <div class="row">
+                <div class="col-md-12 text-center"><img src="assets/img/header_small.png" style="width: 100%;margin-bottom: 8px;" alt="Samples from denoising diffusion probabilistic models trained on CelebA-HQ, LSUN Bedrooms, LSUN church and LSUN cat datasets at 256x256 resolution"><em>Selected generated images from our 256x256 class-conditional ImageNet model.</em></div>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Cascaded Diffusion Models (CDM) are pipelines of diffusion models that generate images of increasing resolution.</li>
+                    <li>CDMs yield high fidelity samples superior to BigGAN-deep and VQ-VAE-2 in terms of both FID score and classification accuracy score on class-conditional ImageNet generation.</li>
+                    <li>These results are achieved with pure generative models without any classifier.</li>
+                    <li>We introduce conditioning augmentation, our data augmentation technique that we find critical towards achieving high sample fidelity.</li>
+                </ul>
+                <img class="img-fluid" src="assets/img/diagram.png">
+                <p></p><em class="text-center" style="display: block;">A cascaded diffusion model comprising a base model and two super-resolution models.</em></div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p>We show that cascaded diffusion models are capable of generating high fidelity images on the class-conditional ImageNet generation challenge, without any assistance from auxiliary image classifiers to boost sample quality. A cascaded diffusion model comprises a pipeline of multiple diffusion models that generate images of increasing resolution, beginning with a standard diffusion model at the lowest resolution, followed by one or more super-resolution diffusion models that successively upsample the image and add higher resolution details. We find that the sample quality of a cascading pipeline relies crucially on conditioning augmentation, our proposed method of data augmentation of the lower resolution conditioning inputs to the super-resolution models. Our experiments show that conditioning augmentation prevents compounding error during sampling in a cascaded model, helping us to train cascading pipelines achieving FID scores of 1.48 at 64x64, 3.52 at 128x128 and 4.88 at 256x256 resolutions, outperforming BigGAN-deep, and classification accuracy scores of 63.02% (top-1) and 84.06% (top-5) at 256x256, outperforming VQ-VAE-2.
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Samples</h2>
+                <p>Below are example generated images at the 256x256 resolution.<br></p>
+                <img class="img-fluid" src="assets/img/more_samples.png" style="margin-bottom: 8px;">
+                <img class="img-fluid" src="assets/img/more_samples_2.png" style="margin-bottom: 8px;">
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Results</h2>
+                <p>On FID score, our models outperform BigGAN-deep and ADM without classifier guidance. On classification accuracy score, we outperform VQ-VAE-2 by a large margin.<br></p>
+                <img class="img-fluid" src="assets/img/results.png" style="margin-top: 16px; margin-bottom: 8px;">
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Related Work</h2>
+                <p>Concurrently, <a href="https://arxiv.org/abs/2105.05233">Dhariwal and Nichol</a> showed that their diffusion models, named ADM, also outperform GANs on ImageNet generation. ADM achieves this result using classifier guidance, which boosts sample quality by modifying the diffusion sampling procedure to simultaneously maximize the score of an extra image classifier. As measured by FID score, ADM with classifier guidance outperforms our reported results, but our reported results outperform ADM without classifier guidance.</p>
+                <p>Our work is a demonstration of the effectiveness of pure generative models, namely cascaded diffusion models without the assistance of extra image classifiers. Nonetheless, classifier guidance and cascading are complementary techniques for improving sample quality, and a detailed investigation of how they interact is warranted.</p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Paper and Citation</h2>
+                <p>Details can be found in our <a href="assets/cascaded_diffusion.pdf">full paper here</a>.</p>
+                <code>@article{ho2021cascaded,<br>&nbsp; title={Cascaded Diffusion Models for High Fidelity Image Generation},<br>&nbsp; author={Ho, Jonathan and Saharia, Chitwan and Chan, William and Fleet, David J and Norouzi, Mohammad and Salimans, Tim},<br>&nbsp; year={2021}<br>}<br></code>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
